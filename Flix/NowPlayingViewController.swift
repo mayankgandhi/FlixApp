@@ -24,7 +24,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPulltoRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         tableView.dataSource = self
-        self.tableView.rowHeight = 120
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 150
        
         fetchMovies()
         
@@ -89,7 +90,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        let cell = sender as! UITableViewCell 
+        let cell = sender as! UITableViewCell
         if let indexPath = tableView.indexPath(for: cell)
         {
             let movie = movies[indexPath.row]
